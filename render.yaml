@@ -1,0 +1,44 @@
+services:
+  - type: web
+    name: laravel-webhook
+    runtime: docker
+    plan: free
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: laravel-webhook-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: laravel-webhook-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: laravel-webhook-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: laravel-webhook-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: laravel-webhook-db
+          property: password
+      - key: SESSION_DRIVER
+        value: cookie
+      - key: CACHE_STORE
+        value: array
+      - key: LOG_CHANNEL
+        value: stderr
+
+databases:
+  - name: laravel-webhook-db
+    plan: free
