@@ -14,7 +14,7 @@ services:
         value: pgsql
       - key: DB_URL
         fromDatabase:
-          name: laravel-webhook-db
+          name: all-provider-transactions
           property: connectionString
       - key: SESSION_DRIVER
         value: cookie
@@ -24,5 +24,5 @@ services:
         value: stderr
 
 databases:
-  - name: laravel-webhook-db
+  - name: all-provider-transactions
     plan: free
